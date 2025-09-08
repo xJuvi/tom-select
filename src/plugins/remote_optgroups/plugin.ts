@@ -14,11 +14,12 @@
  */
 
 import type TomSelect from '../../tom-select.ts';
-import { CBOptions } from './types.ts';
+//import { CBOptions } from './types.ts';
 
-export default function(this:TomSelect, userOptions:CBOptions) {
+//export default function(this:TomSelect, userOptions:CBOptions) {
+export default function(this:TomSelect) {
 	var self = this;
-	
+	/*
 	const cbOptions : CBOptions = Object.assign({
 		triggerChange	: true,
 		callback		: function (optgroup) {
@@ -27,22 +28,33 @@ export default function(this:TomSelect, userOptions:CBOptions) {
 				label: capitalised
 			};
 
-			group[this.settings.optgroupValueField] = optgroup;
+			group[self.settings.optgroupValueField] = optgroup;
 
 			return group;
 		},
-	}, userOptions);
+	}, userOptions);*/
+	
+	var callback		= function (optgroup) {
+			var capitalised = optgroup.charAt(0).toUpperCase() + optgroup.substring(1);
+			var group = {
+				label: capitalised
+			};
+
+			group[self.settings.optgroupValueField] = optgroup;
+
+			return group;
+		},
 	
 	self.hook('before','refreshOptions',()=>{
 		
-		var results = self.search(query);
+		var results = self.search(self.inputValue());
 		
-		for (i = 0; i < results.items.length; i++) {
+		for (let i = 0; i < results.items.length; i++) {
 
 			let option = self.options[results.items[i].id];
 			if( option === undefined ) continue;
 			
-			optgroup    = option[self.settings.optgroupField] || '';
+			var optgroup    = option[self.settings.optgroupField] || '';
 			optgroups   = Array.isArray(optgroup) ? optgroup : [optgroup];
 			
 			for (j = 0, k = optgroups && optgroups.length; j < k; j++) {
