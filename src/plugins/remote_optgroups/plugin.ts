@@ -43,7 +43,7 @@ export default function(this:TomSelect) {
 			group[self.settings.optgroupValueField] = optgroup;
 
 			return group;
-		},
+		};
 	
 	self.hook('before','refreshOptions',()=>{
 		
