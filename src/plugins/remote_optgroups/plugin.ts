@@ -50,7 +50,7 @@ export default function(this:TomSelect, userOptions:CBOptions) {
 			
 			
 				let regGroup;
-				if ( self.optgroups[optgroup] === undefined && typeof cbOptions.callback == 'function' && regGroup = cbOptions.callback.apply(self, [optgroup])) {
+				if ( self.optgroups[optgroup] === undefined && typeof cbOptions.callback === 'function' && (regGroup = cbOptions.callback.apply(self, [optgroup]))) {
 					self.addOptionGroup(regGroup[label], regGroup);
 					//self.registerOptionGroup(regGroup[label]);
 				}
