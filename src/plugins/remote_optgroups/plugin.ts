@@ -14,6 +14,7 @@
  */
 
 import type TomSelect from '../../tom-select.ts';
+import { CBOptions } from './types.ts';
 
 export default function(this:TomSelect, userOptions:CBOptions) {
 	var self = this;
@@ -23,7 +24,7 @@ export default function(this:TomSelect, userOptions:CBOptions) {
 		callback		: function (optgroup) {
 			var capitalised = optgroup.charAt(0).toUpperCase() + optgroup.substring(1);
 			var group = {
-				label: optgroup
+				label: capitalised
 			};
 
 			group[this.settings.optgroupValueField] = optgroup;
