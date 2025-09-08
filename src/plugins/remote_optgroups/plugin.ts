@@ -55,7 +55,7 @@ export default function(this:TomSelect) {
 			if( option === undefined ) continue;
 			
 			var optgroup    = option[self.settings.optgroupField] || '';
-			optgroups   = Array.isArray(optgroup) ? optgroup : [optgroup];
+			let optgroups   = Array.isArray(optgroup) ? optgroup : [optgroup];
 			
 			for (j = 0, k = optgroups && optgroups.length; j < k; j++) {
 				
@@ -63,7 +63,7 @@ export default function(this:TomSelect) {
 			
 			
 				let regGroup;
-				if ( self.optgroups[optgroup] === undefined && typeof cbOptions.callback === 'function' && (regGroup = cbOptions.callback.apply(self, [optgroup]))) {
+				if ( self.optgroups[optgroup] === undefined && typeof callback === 'function' && (regGroup = callback.apply(self, [optgroup]))) {
 					self.addOptionGroup(regGroup[label], regGroup);
 					//self.registerOptionGroup(regGroup[label]);
 				}
